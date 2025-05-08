@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Boards</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 24px;
+      background-color: #fdfdfd;
+      color: #111;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .left {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .right {
+      text-align: right;
+      color: #555;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .button {
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      width: 100%;
+    }
+
+    .button:hover {
+      transform: scale(1.02);
+    }
+
+    /* Button color classes */
+    .blue { background-color: #3b82f6; }
+    .green { background-color: #10b981; }
+    .yellow { background-color: #f59e0b; }
+    .red { background-color: #ef4444; }
+    .purple { background-color: #8b5cf6; }
+    .gray { background-color: #6b7280; }
+    .teal { background-color: #14b8a6; }
+    .orange { background-color: #f97316; }
+    .pink { background-color: #ec4899; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="left">👋 Hello Nikhil</div>
+      <div class="right" id="time">Loading...</div>
+    </div>
+    <div class="buttons-grid" id="buttons"></div>
+  </div>
+
+  <script>
+    const boards = [
+      { name: "LinkedIn", url: "https://www.linkedin.com/jobs", color: "blue" },
+      { name: "Wellfound", url: "https://wellfound.com/jobs", color: "green" },
+      { name: "YC Jobs", url: "https://www.ycombinator.com/jobs", color: "yellow" },
+      { name: "Himalayas", url: "https://himalayas.app/jobs", color: "red" },
+      { name: "Otta", url: "https://otta.com", color: "gray" },
+      { name: "Naukri", url: "https://www.naukri.com", color: "teal" },
+      { name: "Shine", url: "https://www.shine.com", color: "purple" },
+      { name: "Freshersworld", url: "https://www.freshersworld.com", color: "orange" },
+      { name: "Instahyre", url: "https://www.instahyre.com", color: "pink" },
+      { name: "CutShort", url: "https://cutshort.io", color: "green" }
+    ];
+
+    const timeEl = document.getElementById('time');
+    const buttonsEl = document.getElementById('buttons');
+
+    function updateTime() {
+      timeEl.textContent = new Date().toLocaleString();
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    boards.forEach(({ name, url, color }) => {
+      const btn = document.createElement('button');
+      btn.textContent = name;
+      btn.className = `button ${color}`;
+      btn.onclick = () => window.open(url, '_blank');
+      buttonsEl.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
